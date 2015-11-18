@@ -19,7 +19,7 @@ docker-machine create -d digitalocean --digitalocean-access-token=$DO_TOKEN --di
 docker-machine ls
 docker-machine ssh atlascamp-standalone
 
-curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.4.0/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 
@@ -89,7 +89,7 @@ export DO_TOKEN=ab89e77ec0e30281e82251c612b1a92676f59504bfb934b2e67b22373861e627
 docker-machine create -d digitalocean --digitalocean-access-token=$DO_TOKEN --digitalocean-region "ams2" --swarm --swarm-master --swarm-discovery=token://$TOKEN atlascamp-m
 
 - Create two nodes:
-docker-machine create -d digitalocean --digitalocean-access-token=$DO_TOKEN --digitalocean-size "2gb" --digitalocean-region "ams3" --swarm --swarm-discovery=token://$TOKEN --engine-label instance=java atlascamp-1
+docker-machine create -d digitalocean --digitalocean-access-token=$DO_TOKEN --digitalocean-size "2gb" --digitalocean-region "ams2" --swarm --swarm-discovery=token://$TOKEN --engine-label instance=java atlascamp-1
 
 docker-machine create -d digitalocean --digitalocean-access-token=$DO_TOKEN --digitalocean-region "ams2" --swarm --swarm-discovery=token://$TOKEN --engine-label instance=database atlascamp-2
 
@@ -120,7 +120,10 @@ docker run -e constraint:instance==database --name db -e POSTGRES_PASSWORD=somep
 - Run stash on a host with 2Gb of RAM:
 - Change my stash-config with the right IP address (mention that the new compose will support cross host links).
 
-docker run -e constraint:instance==java --name stash --volume /Users/nick/a/orchestration/stash-data:/var/atlassian/application-data/stash --user=root --privileged=true -p 7990:7990 -p 7999:7999 -d atlassian/stash
+docker run -e constraint:instance==java --name stash --volume /Users/np/p/orchestration/stash-data:/var/atlassian/application-data/stash --user=root --privileged=true -p 7990:7990 -p 7999:7999 -d atlassian/stash
+docker run -e constraint:instance==java \
+--volume /root/orchestration/stash-data:/var/atlassian/application-data/stash \
+--user=root --privileged=true -p 7990:7990 -p 7999:7999 -d atlassian/stash
 
 check license:
 docker exec -t atlascamp-1/stash sh -c "ls -al /var/atlassian/application-data/stash/shared"

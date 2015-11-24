@@ -86,10 +86,10 @@ export TOKEN=6bb47adc83e9012d74ad9fcf7eba7b78
 export DO_TOKEN=ab89e77ec0e30281e82251c612b1a92676f59504bfb934b2e67b22373861e627
 
 - Create master/manager:
-docker-machine create -d digitalocean --digitalocean-access-token=$DO_TOKEN --digitalocean-region "ams2" --swarm --swarm-master --swarm-discovery=token://$TOKEN atlascamp-m
+docker-machine create -d digitalocean --digitalocean-access-token=$DO_TOKEN --digitalocean-region "ams2" --swarm --swarm-master --swarm-discovery=token://$TOKEN master
 
 - Create two nodes:
-docker-machine create -d digitalocean --digitalocean-access-token=$DO_TOKEN --digitalocean-size "2gb" --digitalocean-region "ams2" --swarm --swarm-discovery=token://$TOKEN --engine-label instance=java atlascamp-1
+docker-machine create -d digitalocean --digitalocean-access-token=$DO_TOKEN --digitalocean-size "2gb" --digitalocean-region "ams2" --swarm --swarm-discovery=token://$TOKEN --engine-label instance=java node1 
 
 docker-machine create -d digitalocean --digitalocean-access-token=$DO_TOKEN --digitalocean-region "ams2" --swarm --swarm-discovery=token://$TOKEN --engine-label instance=database atlascamp-2
 

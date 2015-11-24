@@ -1,15 +1,18 @@
-stash:
-  image: atlassian/stash
+bitbucket:
+  image: atlassian/bitbucket-server
   ports:
-   - "7990:7990"
-   - "7999:7999"
-  volumes:
-   - /root/orchestration/stash-data:/var/atlassian/application-data/stash
-  links:
-   - db
+    - "7990:7990"
+    - "7999:7999"
+  volumes_from:
+    - license
   user: root
   privileged: true
+  environment:
+    - "constraint:instance==java"
 db:
   image: postgres
   environment:
-    POSTGRES_PASSWORD: somepassword
+    - "POSTGRES_PASSWORD=somepassword"
+    - "constraint:instance==db"
+license:
+  build: .

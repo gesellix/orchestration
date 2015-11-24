@@ -11,6 +11,8 @@ bitbucket:
     - "constraint:instance==java"
 db:
   image: postgres
+  ports:
+    - "5432:5432"
   environment:
     - "POSTGRES_PASSWORD=somepassword"
     - "constraint:instance==db"

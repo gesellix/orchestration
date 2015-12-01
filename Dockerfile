@@ -1,4 +1,5 @@
-FROM busybox
-ADD ./stash-data /var/atlassian/application-data/bitbucket
+FROM alpine
+RUN mkdir -p /var/atlassian/application-data/bitbucket/shared
+COPY ./bitbucket.properties /var/atlassian/application-data/bitbucket/shared/bitbucket.properties
 VOLUME /var/atlassian/application-data/bitbucket
 CMD ["/bin/true"]

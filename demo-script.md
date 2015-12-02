@@ -14,7 +14,7 @@ docker rmi orchestration_stash
 
 export DO_TOKEN=ab89e77ec0e30281e82251c612b1a92676f59504bfb934b2e67b22373861e627
 
-docker-machine create -d digitalocean --digitalocean-access-token=$DO_TOKEN --digitalocean-size "2gb" --digitalocean-region "ams3" atlascamp-standalone
+docker-machine create -d digitalocean --digitalocean-access-token=$DO_TOKEN --digitalocean-size "2gb" --digitalocean-region "ams3" compose-demo
 
 docker-machine ls
 docker-machine ssh atlascamp-standalone

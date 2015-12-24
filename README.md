@@ -1,3 +1,8 @@
+# About
+
+Fork from https://bitbucket.org/nicolapaolucci/orchestration
+for the article at https://developer.atlassian.com/blog/2015/12/atlassian-docker-orchestration/
+
 # Setup instructions
 
 - Create the consul node using `docker-machine`:
